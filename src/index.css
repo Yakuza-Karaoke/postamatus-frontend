@@ -7,3 +7,9 @@
     font-size: 23px;
     font-weight: bold;
 }
+
+.mapContainer {
+    width: 500px;
+    height: 500px;
+    background-color: #333;
+}
