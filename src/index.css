@@ -1,4 +1,6 @@
-
+h1 {
+    margin-bottom: 20px;
+}
 
 .head {
     background-color: #7749F8;
@@ -9,7 +11,52 @@
 }
 
 .mapContainer {
-    width: 500px;
-    height: 500px;
-    background-color: #333;
+    width: 552px;
+    height: 502px;
+    border: 1px solid black;
+    padding: 0;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    background-color: #7749F8;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.button p {
+    transform: translateY(20%);
+}
+.button.count {
+    background-color: #F8F9FA;
+    color: black;
+    border: 1px solid #CDCDCD;
+}
+.button:hover {
+    background-color: #9a77fc;
+}
+.button.count:hover {
+    background-color: #CDCDCD;
+}
+
+.foot {
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    margin-bottom: 0;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.division {
+    margin: 0 15%;
+    width: 70%;
+    height: 10px;
+    color: #000000;
 }
