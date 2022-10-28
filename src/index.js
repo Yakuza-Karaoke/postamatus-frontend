@@ -1,43 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import {
-    createBrowserRouter,
-    RouterProvider,
-    Route,
-} from "react-router-dom";
-import Header from './Header';
-import Content from './Content';
-import {YMaps} from '@pbe/react-yandex-maps';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const mainPage = <>
-    <YMaps>
-        <Header/>
-        <Content/>
-    </YMaps>
-</>
+import { mainPage } from "./pages/mainPage";
+import { adminPage } from "./pages/adminPage";
+import { page404 } from "./pages/page404";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: mainPage,
-    },
-    {
-        path: "/admin",
-        element: <h1>Админка</h1>
-    },
-    {
-        path: "/*",
-        element: <h1>404 СТРАНИЦА НЕ НАЙДЕНА</h1>
-    }
+  {
+    path: "/",
+    element: mainPage,
+  },
+  {
+    path: "/admin",
+    element: adminPage,
+  },
+  {
+    path: "/*",
+    element: page404,
+  },
 ]);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <div>
-        <RouterProvider router={router}/>
-    </div>
+  <div>
+    <RouterProvider router={router} />
+  </div>
 );
-
