@@ -1,12 +1,8 @@
-h1 {
-    margin-bottom: 20px;
-}
-
 .head {
-    background-color: #7749F8;
+    background-color: #4833af;
     height: 90px;
     color: white;
-    font-size: 23px;
+    font-size: 26px;
     font-weight: bold;
 }
 
@@ -24,7 +20,7 @@ h1 {
     align-items: center;
     color: white;
     font-size: 16px;
-    background-color: #7749F8;
+    background-color: #4833af;
     border-radius: 5px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -34,7 +30,7 @@ h1 {
     transform: translateY(20%);
 }
 .button.count {
-    background-color: #F8F9FA;
+    background-color: #fbfbfb;
     color: black;
     border: 1px solid #CDCDCD;
 }
@@ -42,7 +38,7 @@ h1 {
     background-color: #9a77fc;
 }
 .button.count:hover {
-    background-color: #CDCDCD;
+    background-color: #ececec;
 }
 
 .foot {
