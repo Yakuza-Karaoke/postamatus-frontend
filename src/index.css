@@ -41,6 +41,13 @@
     background-color: #ececec;
 }
 
+.button-login {
+    background-color: #4833af;
+}
+.button-login:hover {
+    background-color: #9a77fc
+}
+
 .foot {
     position: fixed;
     height: auto;
@@ -55,4 +62,17 @@
     width: 70%;
     height: 10px;
     color: #000000;
+}
+
+.loginForm {
+    min-height: 100vh;
+    background-color: #4833af;
+}
+
+.form {
+    background-color: white;
+    margin: auto;
+    width: 460px;
+    height: 460px;
+    border-radius: 50px;
 }
