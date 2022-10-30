@@ -2,8 +2,7 @@ import Header from "../Header";
 import Content from "../Content";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { doFetchUser } from "../common/auth";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MainPage() {
   const [userData, setUserData] = useState('');
