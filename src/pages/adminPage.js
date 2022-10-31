@@ -1,4 +1,3 @@
-import Header from "../Header";
 import AdminTable from "../components/adminTable";
 import AdminHeader from "../components/adminHeader";
 import Footer from "../Footer"
