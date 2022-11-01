@@ -1,10 +1,8 @@
-import Footer from "../Footer";
+import '../index.css';
+import Background from "../Background";
 
 export const page404 = (
   <>
-    <h1>404 not found</h1>
-
-    <Background />
-    <Footer />
+   <Background />
   </>
 );

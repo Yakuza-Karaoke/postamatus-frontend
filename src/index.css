@@ -42,12 +42,14 @@
 }
 
 .foot {
-    position: fixed;
     height: auto;
     bottom: 0;
     margin-bottom: 0;
     text-align: center;
-    opacity: 0.5;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFFFFF;
 }
 
 .division {
@@ -58,5 +60,45 @@
 }
 
 .background {
-    background: #7749F8;
+    background: #4833af;
+    width: 100%;
+    height: 100vh;
+}
+
+.textPostamatus{
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.textUps
+{
+    position: fixed;
+    bottom: 31.1%;
+    left: 12.8%;
+    position: absolute;
+    height: 104px;
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 52px;
+
+    color: #FFFFFF;
+}
+
+.textZapr
+{
+    position: fixed;
+    height: 28px;
+    bottom: 22.1%;
+    left: 12.8%;
+    position: absolute;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+
+    color: #FFFFFF;
 }
