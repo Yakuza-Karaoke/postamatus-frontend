@@ -8,7 +8,6 @@ function Content () {
         <div className='container'>
             <div className='row justify-content-center'>
                 <h1 className='col h3 p-3'>Установка постамата в <strong><u>г. Москва</u></strong></h1>
-                
                 <div className='row justify-content-around'>
                     <div className='col-4'>
                             <Button name="Добавить постамат" class="button"/>
