@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { doGetAuthToken, doFetchUser } from "../common/auth";
 
 
@@ -11,6 +11,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState("");
 
   const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
+  const navigate = useNavigate();
 
   const clearErrorFields = () => {
     setUsernameError("");
@@ -43,7 +44,7 @@ export default function Login() {
       doGetAuthToken(username, password)
         .then(() => {
           localStorage.setItem("authenticated", true);
-          <Navigate replace to="/" />
+          return navigate("/")
         })
         .catch((error) => {
           clearErrorFields();

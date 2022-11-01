@@ -15,7 +15,9 @@ root.render (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/*" element={page404} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

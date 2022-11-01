@@ -3,11 +3,11 @@ import Content from "../Content";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { doFetchUser } from "../common/auth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function MainPage() {
   const [userData, setUserData] = useState("");
-  const [authenticated, setAuthenticated] = useState(null);
+  let [authenticated, setAuthenticated] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export default function MainPage() {
     }
   }, []);
 
-  if (!authenticated) {
-    return navigate("/login");
+  if (localStorage.getItem("authenticated")==="false") {
+    return <Navigate replace to="/login" />;
   } else {
     return (
       <YMaps>
