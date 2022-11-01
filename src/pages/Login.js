@@ -1,13 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { doGetAuthToken, doFetchUser } from "../common/auth";
 
+
 export default function Login() {
-  let [username, setUsername] = useState("");
-  let [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
 
   const clearErrorFields = () => {
     setUsernameError("");
@@ -30,19 +33,26 @@ export default function Login() {
 
   const doLogin = () => {
     console.log("Я ТУТ");
+    console.log("Username: " + username);
+    console.log("Password: " + password);
+
     if (!username) setUsernameError("логина нет");
     if (!password) setPasswordError("пароля нет");
 
     if (!usernameError && !passwordError) {
       doGetAuthToken(username, password)
         .then(() => {
-        //   alert();
+          localStorage.setItem("authenticated", true);
+          <Navigate replace to="/" />
         })
         .catch((error) => {
           clearErrorFields();
           alert(error);
+          localStorage.setItem("authenticated", false)
         });
     }
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -60,15 +70,16 @@ export default function Login() {
         <form>
           <div className="container">
             <div className="row justify-content-center">
-              <div class="col-10 form-floating mb-3">
+              <div className="col-10 form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control"
-                  id="Input"
+                  className="form-control"
+                  id="Username"
                   placeholder="name@example.com"
+                  value={username}
                   onChange={checkUsername}
                 />
-                <label for="Input" className="p-3">
+                <label htmlFor="Username" className="p-3">
                   Username
                 </label>
               </div>
@@ -76,30 +87,31 @@ export default function Login() {
               <div className="col-10 form-floating mb-2">
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="Password"
                   placeholder="Password"
+                  value={password}
                   onChange={checkPassword}
                 />
-                <label for="Password" className="p-3">
+                <label htmlFor="Password" className="p-3">
                   Password
                 </label>
               </div>
 
               <div className="form-check col-9 mb-2">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   value=""
                   id="RememberMe"
                 />
-                <label class="form-check-label" for="RememberMe">
+                <label className="form-check-label" htmlFor="RememberMe">
                   Запомнить меня
                 </label>
               </div>
 
               <div className="col-10 btn btn-primary button-login mb-3">
-                <p onClick={doLogin}>Войти</p>
+                <div onClick={doLogin}>Войти</div>
               </div>
 
               <div className="col-10 text-center">
@@ -112,3 +124,7 @@ export default function Login() {
     </div>
   );
 }
+
+const Logout = () => {
+  console.log("Logout");
+};
