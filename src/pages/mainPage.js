@@ -7,7 +7,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 
 export default function MainPage() {
   const [userData, setUserData] = useState("");
-  let [authenticated, setAuthenticated] = useState();
+  let [authenticated, setAuthenticated] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,13 +19,6 @@ export default function MainPage() {
         })
         .catch(() => "Nothing")
     );
-  }, []);
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("authenticated");
-    if (loggedIn) {
-      setAuthenticated(loggedIn);
-    }
   }, []);
 
   if (localStorage.getItem("authenticated")==="false") {

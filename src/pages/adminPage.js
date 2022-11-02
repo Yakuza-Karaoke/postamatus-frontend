@@ -7,13 +7,6 @@ import { YMaps } from "@pbe/react-yandex-maps";
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(null);
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("authenticated");
-    if (loggedIn) {
-      setAuthenticated(loggedIn);
-    }
-  }, []);
 
   if (localStorage.getItem("authenticated")==="false") {
     return <Navigate replace to="/login" />;
