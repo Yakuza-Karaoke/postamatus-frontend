@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { doGetAuthToken, doFetchUser } from "../common/auth";
+import { doSubmitForm } from "../common/reg";
 
 export default function Register() {
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPwd, setCheckPwd] = useState("")
 
+  const [fullnameError, setFullnameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [checkPwdError, setCheckPwdError] = useState("");
 
   const navigate = useNavigate();
 
@@ -16,15 +19,43 @@ export default function Register() {
     return navigate("/login");
   };
 
+  const CheckFullname = (fullname) => {
+    setFullname(fullname.target.value)
+  }
+
+  const CheckUsername = (username) => {
+    setUsername(username.target.value)
+  }
+
+  const CheckPassword = (password) => {
+    setPassword(password.target.value)
+  }
+
+  const CheckPwd = (checkPwd) => {
+    setCheckPwd(checkPwd.target.value)
+  }
+
   const doSubmit = () => {
     console.log("Кнопка тыкнулась");
     console.log("Full Name: " + fullname);
     console.log("Username: " + username);
     console.log("Password: " + password);
 
-    if (!fullname) console.log("Введите имя и фамилию")
-    if (!username) console.log("Введите имя пользователя")
-    if (!password) console.log("Введите пароль")
+    if (!fullname) setFullnameError("Введите имя и фамилию!");
+    if (!username) setUsernameError("Введите имя пользователя!");
+    if (!password) setPasswordError("Введите пароль!");
+    if (password != checkPwd) setCheckPwdError("Пароль не совпадает!")
+
+    if (!fullnameError && !usernameError && !passwordError && !checkPwdError) {
+      doSubmitForm(fullname, username, password)
+      .then(() => {
+        alert('Пользователь успешно создан!')
+        return navigate('/login');
+      })
+      .catch((error) => {
+        alert(error);
+      })
+    }
   };
 
   return (
@@ -51,7 +82,7 @@ export default function Register() {
                   id="FullName"
                   placeholder="fullname"
                   value={fullname}
-                  // onChange={}
+                  onChange={CheckFullname}
                 />
                 <label htmlFor="FullName" className="p-3">
                   Имя и фамилия
@@ -65,7 +96,7 @@ export default function Register() {
                   id="Username"
                   placeholder="username"
                   value={username}
-                  // onChange={}
+                  onChange={CheckUsername}
                 />
                 <label htmlFor="Username" className="p-3">
                   Имя пользователя
@@ -79,7 +110,7 @@ export default function Register() {
                   id="Password"
                   placeholder="password"
                   value={password}
-                  // onChange={}
+                  onChange={CheckPassword}
                 />
                 <label htmlFor="Password" className="p-3">
                   Пароль
@@ -90,12 +121,12 @@ export default function Register() {
                 <input
                   type="Password"
                   className="form-control"
-                  id="Password"
-                  placeholder="password"
-                  // value={}
-                  // onChange={}
+                  id="CheckPwd"
+                  placeholder="checkPwd"
+                  value={checkPwd}
+                  onChange={CheckPwd}
                 />
-                <label htmlFor="Password" className="p-3">
+                <label htmlFor="CheckPwd" className="p-3">
                   Повторите пароль
                 </label>
               </div>
