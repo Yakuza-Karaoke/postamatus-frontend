@@ -1,29 +1,37 @@
 import "../index.css";
 import Logo404 from "../Logo404";
-import Header from "../Header";
+import Footer from "../Footer";
+import { useNavigate } from "react-router-dom";
 
-export const page404 = (
-  <div className="background">
-    <div class="row">
-      <div class="col">
-        <Logo404 />
-      </div>
-    </div>
-    <div class="row">
-      <div class="textUps col-3 pt-3">
-        Упс, мы не можем найти страницу <br></br>Но мы пытались!
-      </div>
-    </div>
-    <div class="row">
-      <div class="textZapr col-3 pt-3">
-        Запрашиваемая страница удалена, имеет другое имя или её не существует.
-      </div>
-    </div>
-    <div class="row">
-      <div class="textZapr col-3 pt-4">
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a class="btn btn-light btn-lg">Вернуться назад</a>
-      </div>
-    </div>
-  </div>
-);
+export default function Page404 () {
+  const navigate = useNavigate();
+  function Return () {
+    navigate("/")
+  }
+  return(
+    <div className="background">
+        <div className="textPostamatus col-auto p-3">Постаматус</div>
+          <div>
+            <div >
+              <Logo404 />
+            </div>
+          </div>
+          <div>
+            <div class="textUps">
+              Упс, мы не можем найти страницу <br></br>Но мы пытались!
+            </div>
+          </div>
+          <div>
+            <div class="textZapr">
+              Запрашиваемая страница удалена, имеет другое имя или её не существует.
+            </div>
+          </div>
+          <div>
+            <div>
+              <a class="buttNaz" href="#"><div onClick={Return}>← Вернуться назад</div></a>
+            </div>
+          </div>
+          <Footer />
+      </div> 
+  )
+};
