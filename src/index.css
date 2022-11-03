@@ -73,11 +73,9 @@
 
 .textUps
 {
-    position: fixed;
-    bottom: 31.1%;
-    left: 12.8%;
-    position: absolute;
-    height: 104px;
+
+    margin-top: 1.1%;
+    margin-left: 12.8%;
 
     font-style: normal;
     font-weight: 800;
@@ -88,12 +86,9 @@
 }
 
 .textZapr
-{
-    position: fixed;
-    height: 28px;
-    bottom: 22.1%;
-    left: 12.8%;
-    position: absolute;
+{   
+    margin-top: 0.2%;
+    margin-left: 12.8%;
 
     font-style: normal;
     font-weight: 500;
@@ -102,3 +97,10 @@
 
     color: #FFFFFF;
 }
+
+.er404
+{
+    margin-top: 5.3%;
+    margin-left: 12.8%;
+}
+
