@@ -1,59 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doGetAuthToken, doFetchUser } from "../common/auth";
-
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
   const navigate = useNavigate();
 
-  const clearErrorFields = () => {
-    setUsernameError("");
-    setPasswordError("");
-  };
-
   const checkUsername = (username) => {
-    // clearErrorFields();
-    // if (username !== "") setUsernameError("");
-    // else setUsernameError("incorrect");
     setUsername(username.target.value);
   };
 
   const checkPassword = (password) => {
-    // clearErrorFields();
-    // if (password !== "") setPasswordError("");
-    // else setPasswordError("incorrect");
     setPassword(password.target.value);
   };
 
+  const clearFields = () => {
+    setUsername("");
+    setPassword("");
+  };
+
   const doLogin = () => {
-    console.log("Я ТУТ");
-    console.log("Username: " + username);
-    console.log("Password: " + password);
+    console.log("Username: " + username + ", Password: " + password);
 
-    if (!username) setUsernameError("логина нет");
-    if (!password) setPasswordError("пароля нет");
-
-    if (!usernameError && !passwordError) {
+    if (username && password) {
       doGetAuthToken(username, password)
         .then(() => {
           localStorage.setItem("authenticated", true);
-          return navigate("/")
+          return navigate("/");
         })
         .catch((error) => {
-          clearErrorFields();
-          alert(error);
-          localStorage.setItem("authenticated", false)
+          toast.error(String(error.response.data.detail));
+          localStorage.setItem("authenticated", false);
+          clearFields();
         });
+    } else {
+      toast.error("Введите логин и пароль!");
     }
-    setUsername("");
-    setPassword("");
   };
 
   return (
