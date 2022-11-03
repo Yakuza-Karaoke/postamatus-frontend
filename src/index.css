@@ -74,6 +74,11 @@
     background-color: white;
     margin: auto;
     width: 460px;
-    height: 460px;
+    min-height: 460px;
+    height: auto;
     border-radius: 50px;
+}
+
+.pointer {
+    cursor: pointer;
 }

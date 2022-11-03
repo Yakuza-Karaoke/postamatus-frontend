@@ -56,14 +56,18 @@ export default function Login() {
     setPassword("");
   };
 
+  function GoReg() {
+    return navigate("/reg")
+  };
+
   return (
     <div className="loginForm d-flex flex-column justify-content-center align-items-center">
       <div className="form d-flex flex-column justify-content-center align-items-center">
         <div className="container">
           <div className="row align-items-center justify-content-between mb-5">
             <div className="col-1"></div>
-            <h3 className="col">Вход</h3>
-            <h3 className="col text-end">Регистрация</h3>
+            <h4 className="col">ВХОД</h4>
+            <h4 className="col text-end pointer"><div onClick={GoReg}>РЕГИСТРАЦИЯ</div></h4>
             <div className="col-1"></div>
           </div>
         </div>
@@ -81,7 +85,7 @@ export default function Login() {
                   onChange={checkUsername}
                 />
                 <label htmlFor="Username" className="p-3">
-                  Username
+                  Имя пользователя
                 </label>
               </div>
 
@@ -95,7 +99,7 @@ export default function Login() {
                   onChange={checkPassword}
                 />
                 <label htmlFor="Password" className="p-3">
-                  Password
+                  Пароль
                 </label>
               </div>
 
