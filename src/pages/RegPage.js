@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doSubmitForm } from "../common/reg";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checkPwd, setCheckPwd] = useState("")
+  const [checkPwd, setCheckPwd] = useState("");
 
-  const [fullnameError, setFullnameError] = useState("");
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [checkPwdError, setCheckPwdError] = useState("");
 
   const navigate = useNavigate();
@@ -20,41 +18,50 @@ export default function Register() {
   };
 
   const CheckFullname = (fullname) => {
-    setFullname(fullname.target.value)
-  }
+    setFullname(fullname.target.value);
+  };
 
   const CheckUsername = (username) => {
-    setUsername(username.target.value)
-  }
+    setUsername(username.target.value);
+  };
 
   const CheckPassword = (password) => {
-    setPassword(password.target.value)
-  }
+    setPassword(password.target.value);
+  };
 
   const CheckPwd = (checkPwd) => {
-    setCheckPwd(checkPwd.target.value)
+    setCheckPwd(checkPwd.target.value);
+  };
+
+  const clearFields = () => {
+    setFullname("");
+    setUsername("");
+    setPassword("");
+    setCheckPwd("");
   }
 
   const doSubmit = () => {
-    console.log("Кнопка тыкнулась");
-    console.log("Full Name: " + fullname);
-    console.log("Username: " + username);
-    console.log("Password: " + password);
+    console.log(
+      "Кнопка тыкнулась",
+      "Full Name: " + fullname,
+      "Username: " + username,
+      "Password: " + password
+    );
 
-    if (!fullname) setFullnameError("Введите имя и фамилию!");
-    if (!username) setUsernameError("Введите имя пользователя!");
-    if (!password) setPasswordError("Введите пароль!");
-    if (password != checkPwd) setCheckPwdError("Пароль не совпадает!")
+    if (password !== checkPwd) {setCheckPwdError("Пароли не совпадают!")} else setCheckPwdError("")
 
-    if (!fullnameError && !usernameError && !passwordError && !checkPwdError) {
+    if (fullname && username && password && !checkPwdError) {
       doSubmitForm(fullname, username, password)
-      .then(() => {
-        alert('Пользователь успешно создан!')
-        return navigate('/login');
-      })
-      .catch((error) => {
-        alert(error);
-      })
+        .then(() => {
+          toast.success('Пользователь успешно создан!');
+          clearFields();
+          return navigate("/login");
+        })
+        .catch((error) => {
+          toast.error(String(error.response.data.detail));
+        });
+    } else {
+      if (checkPwdError) {toast.error(checkPwdError)} else toast.error('Все поля должны быть заполнены!')
     }
   };
 

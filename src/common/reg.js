@@ -5,7 +5,7 @@ export const doSubmitForm = (fullname, username, password) => {
   return new Promise((resolve, reject) => {
     axios
       .post(
-        `http://194.87.248.78:8000/reg`,
+        `http://178.170.192.207:8000/reg`,
         { username: username, full_name: fullname, password: password }
       )
       .then((res) => {
