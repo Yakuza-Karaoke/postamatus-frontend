@@ -5,17 +5,15 @@ import Content from "../Content";
 import { YMaps } from "@pbe/react-yandex-maps";
 
 export default function AdminPage() {
-  const [authenticated, setAuthenticated] = useState(null);
-  const navigate = useNavigate();
 
-  if (localStorage.getItem("authenticated")==="false") {
-    return <Navigate replace to="/login" />;
-  } else {
+  if (localStorage.getItem("authenticated")==="true") {
     return (
       <YMaps>
         <Header />
         <Content />
       </YMaps>
     );
+  } else {
+    return <Navigate replace to="/login" />;
   }
 }
