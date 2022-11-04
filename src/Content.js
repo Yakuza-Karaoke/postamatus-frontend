@@ -2,6 +2,7 @@ import "./index.css";
 import MyMap from "./components/Map";
 import Button from "./components/Button";
 
+
 function Content() {
   return (
     <div className="container">
