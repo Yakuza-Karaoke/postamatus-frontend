@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
