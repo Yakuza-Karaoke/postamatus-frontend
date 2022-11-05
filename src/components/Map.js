@@ -1,76 +1,77 @@
-// import { Map, Placemark } from "@pbe/react-yandex-maps";
-
-// function MyMap() {
-//   // Документация по яндекс картам: https://pbe-react-yandex-maps.vercel.app/?path=/docs/getting-started--page
-
-//   let picked_point = null;
-
-//   const clickOnMap = (e) => {
-//     console.log(e.get("coords"));
-//     picked_point = e.get("coords");
-//   };
-
-//   return (
-//     <Map
-//       width={"550px"}
-//       height={"500px"}
-//       defaultState={{
-//         center: [55.755864, 37.617698],
-//         zoom: 10,
-//         controls: ["zoomControl", "fullscreenControl"],
-//       }}
-//       modules={["control.ZoomControl", "control.FullscreenControl"]}
-//       onClick={clickOnMap}
-//     >
-//       {picked_point ? <Placemark geometry={picked_point} /> : null}
-//     </Map>
-//   );
-// }
-
-// export default MyMap;
+import { Map, Placemark, ObjectManager, ZoomControl } from "@pbe/react-yandex-maps";
+import React from "react";
+import { doCalcScore } from "../common/points";
 
 
-import React, { Component } from 'react'
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+class MyMap extends React.Component {
+  state = {
+    marker: [],
+    features: {
+      type: "FeatureCollection",
+      features: [],
+    },
+  };
 
-export default class MyMap extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            coords: [],
-            mapState: {
-                center: [41.2825125, 69.1392826],
-                zoom: 9
-            },
-        }
-    }
+  dataConvert = (coords) => {
+    let features = [];
+    coords &&
+      coords.forEach((obj) => {
+        let tmpObj = {
+          type: "Feature",
+          id: obj.address,
+          geometry: {
+            type: "Point",
+            coordinates: [
+              obj.location.coordinates[1],
+              obj.location.coordinates[0],
+            ],
+          },
+          properties: {
+            balloonContent: "Адрес: " + obj.address + ". Население: " + obj.population,
+            hintContent: obj.address,
+          },
+        };
+        features.push(tmpObj);
+      });
+    return features;
+  };
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.oldCoords !== this.props.oldCoords) {
-            this.setState({ coords: this.props.oldCoords })
-        }
-    }
-
-    onMapClick = (e) => {
-        const coords = e.get("coords");
-        this.setState({ coords: coords })
-    };
-
-    render() {
-        return (
-            <div>
-                <YMaps query={{ apikey: "6054728e-f3f0-4a09-b10c-8e6d17c49bf2" }}>
-                    <Map
-                        modules={["Placemark", "geoObject.addon.balloon"]}
-                        onClick={this.onMapClick}
-                        state={this.state.mapState}
-                        width='100%'
-                        height='500px'
-                    >
-                        {this.state.coords ? <Placemark geometry={this.state.coords} /> : null}
-                    </Map>
-                </YMaps>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <Map
+        defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+        width={"550px"}
+        height={"500px"}
+        onClick={(e) => {
+          // устанавливаем маркер и записываем координаты в стейт
+          this.setState({ marker: e.get("coords") });
+          doCalcScore(e.get("coords")[0], e.get("coords")[1]).then((data) => {
+            console.log(e.get("coords")[0], e.get("coords")[1]);
+            this.setState({ features: this.dataConvert(data.data.near) });
+            this.props.onCalculate(data.data);
+          });
+        }}
+      >
+        {this.state.marker && <Placemark geometry={this.state.marker} />}
+        <ObjectManager
+          options={{
+            clusterize: false,
+            gridSize: 150,
+          }}
+          features={this.state.features}
+          objects={{
+            openBalloonOnClick: true,
+            preset: "islands#greenDotIcon",
+          }}
+          modules={[
+            'objectManager.addon.objectsBalloon',
+            'objectManager.addon.objectsHint',
+          ]}
+        />
+      <ZoomControl options={{ float: 'right' }} />
+      </Map>
+    );
+  }
 }
+
+export default MyMap;
