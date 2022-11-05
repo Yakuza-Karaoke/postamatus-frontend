@@ -1,28 +1,20 @@
+import Footer from "../Footer"
 import Header from "../Header";
 import Content from "../Content";
 import { YMaps } from "@pbe/react-yandex-maps";
-import { doFetchUser } from "../common/auth";
-import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function MainPage() {
-  const [userData, setUserData] = useState('');
 
-  useEffect(() => {
-    setUserData(
-      doFetchUser().then((res) => {
-        console.log(res.data.username);
-        return res.data.username;
-      }).catch(() => 'Nothing')
-    );
-  }, []);
 
-  return (
-    <>
+  if (localStorage.getItem("authenticated")==="true") {
+    return (
       <YMaps>
         <Header />
         <Content />
-        <h1>{userData && typeof userData}</h1>
       </YMaps>
-    </>
-  );
+    );
+  } else {
+    return <Navigate replace to="/login" />;
+  }
 }

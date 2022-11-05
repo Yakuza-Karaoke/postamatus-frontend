@@ -1,18 +1,46 @@
-import './index.css'
+import "./index.css";
+import { doFetchUser } from "./common/auth";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const hui = <div>Панель администратора</div>
+const title = <div>Панель администратора</div>
 
-function Header() {
+export default function Header() {
+  const [userData, setUserData] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    doFetchUser().then((res) => setUserData(res.data.full_name));
+  }, []);
+
+  const Logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
       <header>
         <div className="container">
           <div className="row align-items-center justify-content-between head">
             <div className='col-auto pl-3'>Постаматус</div>
-            <div className='col-auto pr-3'>{hui}</div>
+            <div className='col-auto pr-3'>{title}</div>
+            <div className="col-auto p-3">
+              {localStorage.getItem("token") && (
+                <>
+                  <div className="lead col-auto">
+                    Добро пожаловать, {userData}!
+                  </div>
+                  <div className="col pointer" onClick={Logout}>
+                    <i class="bi bi-door-closed"></i>
+                  </div>
+                </>
+              )}
+             </div>
+            </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
   );
 }
-
-export default Header;

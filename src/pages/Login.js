@@ -1,48 +1,48 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { doGetAuthToken, doFetchUser } from "../common/auth";
+import { toast } from "react-toastify";
 
 export default function Login() {
-  let [username, setUsername] = useState("");
-  let [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const clearErrorFields = () => {
-    setUsernameError("");
-    setPasswordError("");
-  };
+  const navigate = useNavigate();
 
   const checkUsername = (username) => {
-    // clearErrorFields();
-    // if (username !== "") setUsernameError("");
-    // else setUsernameError("incorrect");
     setUsername(username.target.value);
   };
 
   const checkPassword = (password) => {
-    // clearErrorFields();
-    // if (password !== "") setPasswordError("");
-    // else setPasswordError("incorrect");
     setPassword(password.target.value);
   };
 
-  const doLogin = () => {
-    console.log("Я ТУТ");
-    if (!username) setUsernameError("логина нет");
-    if (!password) setPasswordError("пароля нет");
+  const clearFields = () => {
+    setUsername("");
+    setPassword("");
+  };
 
-    if (!usernameError && !passwordError) {
+  const doLogin = () => {
+    console.log("Username: " + username + ", Password: " + password);
+
+    if (username && password) {
       doGetAuthToken(username, password)
         .then(() => {
-        //   alert();
+          localStorage.setItem("authenticated", true);
+          return navigate("/");
         })
         .catch((error) => {
-          clearErrorFields();
-          alert(error);
+          toast.error(String(error.response.data.detail));
+          localStorage.setItem("authenticated", false);
+          clearFields();
         });
+    } else {
+      toast.error("Введите логин и пароль!");
     }
+  };
+
+  function GoReg() {
+    return navigate("/reg")
   };
 
   return (
@@ -51,8 +51,8 @@ export default function Login() {
         <div className="container">
           <div className="row align-items-center justify-content-between mb-5">
             <div className="col-1"></div>
-            <h3 className="col">Вход</h3>
-            <h3 className="col text-end">Регистрация</h3>
+            <h4 className="col">ВХОД</h4>
+            <h4 className="col text-end pointer"><div onClick={GoReg}>РЕГИСТРАЦИЯ</div></h4>
             <div className="col-1"></div>
           </div>
         </div>
@@ -60,46 +60,48 @@ export default function Login() {
         <form>
           <div className="container">
             <div className="row justify-content-center">
-              <div class="col-10 form-floating mb-3">
+              <div className="col-10 form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control"
-                  id="Input"
+                  className="form-control"
+                  id="Username"
                   placeholder="name@example.com"
+                  value={username}
                   onChange={checkUsername}
                 />
-                <label for="Input" className="p-3">
-                  Username
+                <label htmlFor="Username" className="p-3">
+                  Имя пользователя
                 </label>
               </div>
 
               <div className="col-10 form-floating mb-2">
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="Password"
                   placeholder="Password"
+                  value={password}
                   onChange={checkPassword}
                 />
-                <label for="Password" className="p-3">
-                  Password
+                <label htmlFor="Password" className="p-3">
+                  Пароль
                 </label>
               </div>
 
               <div className="form-check col-9 mb-2">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   value=""
                   id="RememberMe"
                 />
-                <label class="form-check-label" for="RememberMe">
+                <label className="form-check-label" htmlFor="RememberMe">
                   Запомнить меня
                 </label>
               </div>
 
               <div className="col-10 btn btn-primary button-login mb-3">
-                <p onClick={doLogin}>Войти</p>
+                <div onClick={doLogin}>Войти</div>
               </div>
 
               <div className="col-10 text-center">
@@ -112,3 +114,7 @@ export default function Login() {
     </div>
   );
 }
+
+const Logout = () => {
+  console.log("Logout");
+};
