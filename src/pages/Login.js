@@ -42,17 +42,19 @@ export default function Login() {
   };
 
   function GoReg() {
-    return navigate("/reg")
-  };
+    return navigate("/reg");
+  }
 
   return (
-    <div className="loginForm d-flex flex-column justify-content-center align-items-center">
+    <div className="form-login d-flex flex-column justify-content-center align-items-center">
       <div className="form d-flex flex-column justify-content-center align-items-center">
         <div className="container">
           <div className="row align-items-center justify-content-between mb-5">
             <div className="col-1"></div>
             <h4 className="col">ВХОД</h4>
-            <h4 className="col text-end pointer"><div onClick={GoReg}>РЕГИСТРАЦИЯ</div></h4>
+            <h4 className="col text-end pointer">
+              <div onClick={GoReg}>РЕГИСТРАЦИЯ</div>
+            </h4>
             <div className="col-1"></div>
           </div>
         </div>

@@ -38,7 +38,7 @@ export default function Register() {
     setUsername("");
     setPassword("");
     setCheckPwd("");
-  }
+  };
 
   const doSubmit = () => {
     console.log(
@@ -48,12 +48,14 @@ export default function Register() {
       "Password: " + password
     );
 
-    if (password !== checkPwd) {setCheckPwdError("Пароли не совпадают!")} else setCheckPwdError("")
+    if (password !== checkPwd) {
+      setCheckPwdError("Пароли не совпадают!");
+    } else setCheckPwdError("");
 
     if (fullname && username && password && !checkPwdError) {
       doSubmitForm(fullname, username, password)
         .then(() => {
-          toast.success('Пользователь успешно создан!');
+          toast.success("Пользователь успешно создан!");
           clearFields();
           return navigate("/login");
         })
@@ -61,12 +63,14 @@ export default function Register() {
           toast.error(String(error.response.data.detail));
         });
     } else {
-      if (checkPwdError) {toast.error(checkPwdError)} else toast.error('Все поля должны быть заполнены!')
+      if (checkPwdError) {
+        toast.error(checkPwdError);
+      } else toast.error("Все поля должны быть заполнены!");
     }
   };
 
   return (
-    <div className="loginForm d-flex flex-column justify-content-center align-items-center">
+    <div className="form-login d-flex flex-column justify-content-center align-items-center">
       <div className="form d-flex flex-column justify-content-center align-items-center">
         <div className="container">
           <div className="row align-items-center justify-content-between mb-5 mt-5">

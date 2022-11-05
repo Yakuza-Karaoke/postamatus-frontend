@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
-import RegPage from './pages/RegPage'
+import RegPage from "./pages/RegPage";
 import MainPage from "./pages/mainPage";
 import Page404 from "./pages/page404";
 import ChangePass from "./pages/changePass";

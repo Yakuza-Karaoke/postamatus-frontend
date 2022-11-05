@@ -8,7 +8,7 @@ export default function MainPage() {
   if (localStorage.getItem("authenticated")==="true") {
     return (
       <YMaps>
-        <Header />
+        <Header title='Главная'/>
         <Content />
         <Footer />
       </YMaps>
