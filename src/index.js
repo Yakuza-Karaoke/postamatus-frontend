@@ -9,8 +9,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import RegPage from './pages/RegPage'
 import MainPage from "./pages/mainPage";
+import Page404 from "./pages/page404";
+import ChangePass from "./pages/changePass";
 import AdminPage from "./pages/adminPage";
-import { page404 } from "./pages/page404";
 import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -23,6 +24,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/reg" element={<RegPage />} />
         <Route path="/*" element={<Page404 />} />
+        <Route path="/changePassword" element={<ChangePass />} />
       </Routes>
     </BrowserRouter>{" "}
     <ToastContainer

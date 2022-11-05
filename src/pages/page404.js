@@ -28,10 +28,12 @@ export default function Page404 () {
           </div>
           <div>
             <div>
-              <a class="buttNaz" href="#"><div onClick={Return}>← Вернуться назад</div></a>
+              <a class="buttNaz" href="/"><div onClick={Return}>← Вернуться назад</div></a>
             </div>
           </div>
-          <Footer />
-      </div> 
+          <div className="text-white bg-white">
+            <Footer />
+          </div>
+          </div>
   )
 };

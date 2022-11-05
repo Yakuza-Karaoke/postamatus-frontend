@@ -5,13 +5,12 @@ import { YMaps } from "@pbe/react-yandex-maps";
 import { Navigate } from "react-router-dom";
 
 export default function MainPage() {
-
-
   if (localStorage.getItem("authenticated")==="true") {
     return (
       <YMaps>
         <Header />
         <Content />
+        <Footer />
       </YMaps>
     );
   } else {
