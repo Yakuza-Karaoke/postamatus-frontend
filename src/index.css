@@ -41,6 +41,13 @@
     background-color: #ececec;
 }
 
+.button-login {
+    background-color: #4833af;
+}
+.button-login:hover {
+    background-color: #9a77fc
+}
+
 .foot {
     height: auto;
     bottom: 0;
@@ -53,10 +60,29 @@
 }
 
 .division {
-    margin: 0 15%;
-    width: 70%;
+    /* margin: 0 15%; */
+    /* margin: 0 inherit; */
+    /* width: 70% ; */
     height: 10px;
     color: #000000;
+}
+
+.loginForm {
+    min-height: 100vh;
+    background-color: #4833af;
+}
+
+.form {
+    background-color: white;
+    margin: auto;
+    width: 460px;
+    min-height: 460px;
+    height: auto;
+    border-radius: 50px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .background {
@@ -125,5 +151,4 @@
     width: 15%;
     align-items: center;
     justify-content: center;
- 
 }
