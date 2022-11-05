@@ -12,9 +12,9 @@ root.render (
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ChangePass />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/*" element={<Page404 />} />
+        <Route path="/changePassword" element={<ChangePass />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
