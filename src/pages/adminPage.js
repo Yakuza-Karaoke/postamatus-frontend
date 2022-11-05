@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-import Header from "../Header";
-import Content from "../Content";
+import AdminTable from "../components/adminTable";
+import AdminHeader from "../components/adminHeader";
+import Footer from "../Footer"
 import { YMaps } from "@pbe/react-yandex-maps";
+import MyMap from "../components/Map";
 
-export default function AdminPage() {
-
-  if (localStorage.getItem("authenticated")==="true") {
-    return (
-      <YMaps>
-        <Header />
-        <Content />
-      </YMaps>
-    );
-  } else {
-    return <Navigate replace to="/login" />;
-  }
-}
+export const adminPage = (
+  <YMaps>
+    <AdminHeader />
+    <div className="container mt-5">
+      <div className="row justify-content-between">
+        <div className="col">
+          <AdminTable />
+        </div>
+        <div className="col-auto">
+          <MyMap />
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </YMaps>
+);
