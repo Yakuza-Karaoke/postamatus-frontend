@@ -102,7 +102,7 @@ export default function Login() {
                 </label>
               </div>
 
-              <div className="col-10 btn btn-primary button-login mb-3">
+              <div className="col-10 btn btn-primary button-login mb-3 py-2">
                 <div onClick={doLogin}>Войти</div>
               </div>
 
@@ -116,7 +116,3 @@ export default function Login() {
     </div>
   );
 }
-
-const Logout = () => {
-  console.log("Logout");
-};
