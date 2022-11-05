@@ -22,7 +22,7 @@ root.render(
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reg" element={<RegPage />} />
-        <Route path="/*" element={page404} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>{" "}
     <ToastContainer
