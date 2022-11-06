@@ -25,22 +25,29 @@ export const doCalcScore = (lat, long) => {
 };
 
 export const doSavePostamat = (lat, long, score) => {
-    return new Promise((resolve, reject) => {
-        axios
-          .post(`http://178.170.192.207:8000/points/postamat?lat=${lat}&long=${long}&score=${score}`, {
-            headers: {
-              "Content-Type": "application/json",
-              token: localStorage.getItem("token"),
-            },
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              resolve(res);
-            } else reject(res);
-          })
-          .catch((error) => reject(error));
-      });
-}
+  console.log(localStorage.getItem("token"));
+  return new Promise((resolve, reject) => {
+    axios
+      .post("http://178.170.192.207:8000/points/postamat", "", {
+        params: {
+          lat: lat,
+          long: long,
+          score: score,
+        },
+        headers: {
+          accept: "application/json",
+          token: localStorage.getItem("token"),
+          "content-type": "application/x-www-form-urlencoded",
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          resolve(res);
+        } else reject(res);
+      })
+      .catch((error) => reject(error));
+  });
+};
 
 export const savePointCalc = (data) => {
   localStorage.setItem();

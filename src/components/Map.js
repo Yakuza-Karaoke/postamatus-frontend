@@ -16,13 +16,14 @@ class MyMap extends React.Component {
     },
   };
 
-  dataConvert = (coords) => {
+  dataConvert = (coords, c_type) => {
+    // c_type == house || postamat
     let features = [];
     coords &&
       coords.forEach((obj) => {
         let tmpObj = {
           type: "Feature",
-          id: obj.address,
+          id: c_type === "house" ? obj.address : obj.title,
           geometry: {
             type: "Point",
             coordinates: [
@@ -32,14 +33,17 @@ class MyMap extends React.Component {
           },
           properties: {
             balloonContent:
-              "Адрес: " + obj.address + ". Население: " + obj.population,
-            hintContent: obj.address,
+              c_type === "house"
+                ? "Адрес: " + obj.address + ". Население: " + obj.population
+                : "Постамат с оценкой: " + obj.score,
+            hintContent:
+              c_type === "house" ? obj.address : "Постамат-" + obj.title,
           },
           options: {
             preset:
-              obj.type === "special"
-                ? "islands#redDotIcon"
-                : "islands#greenDotIcon",
+              c_type === "house"
+                ? "islands#greenDotIcon"
+                : "islands#redDotIcon",
           },
         };
         features.push(tmpObj);
@@ -58,7 +62,11 @@ class MyMap extends React.Component {
           this.setState({ marker: e.get("coords") });
           doCalcScore(e.get("coords")[0], e.get("coords")[1]).then((data) => {
             console.log(e.get("coords")[0], e.get("coords")[1]);
-            this.setState({ features: this.dataConvert(data.data.near) });
+            this.setState({
+              features: this.dataConvert(data.data.near_houses, "house").concat(
+                this.dataConvert(data.data.near_postamats, "postamat")
+              ),
+            });
             this.props.onCalculate(data.data);
           });
         }}
