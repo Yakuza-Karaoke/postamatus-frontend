@@ -160,16 +160,34 @@
 
 .text-change-password
 {
-  text-align: center;
-  padding-right: 7.5%;
-  padding-bottom: 1%;
-  font-family: 'Montserrat';
+
+ 
   font-style: normal;
-  font-weight: 400;
+  font-weight: 900;
   font-size: 16px;
   line-height: 20px;
 
-  text-transform: uppercase;
+  color: #000000;
+}
+
+.text-change-password-statistic-header
+{
+  margin-left: 9%;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #000000;
+}
+
+.text-change-password-statistic
+{
+  margin-left: 1.7%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
 
   color: #000000;
 }
