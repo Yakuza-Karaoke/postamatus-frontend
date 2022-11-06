@@ -29,7 +29,7 @@ export default function Login() {
       doGetAuthToken(username, password)
         .then(() => {
           localStorage.setItem("authenticated", true);
-          return navigate("/");
+          return navigate("/land");
         })
         .catch((error) => {
           toast.error(String(error.response.data.detail));
