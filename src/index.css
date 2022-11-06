@@ -13,6 +13,11 @@
   padding: 0;
 }
 
+a {
+  color: #4833af;
+  text-decoration: none;
+}
+
 .button {
   display: flex;
   flex-direction: row;

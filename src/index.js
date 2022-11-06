@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 import RegPage from "./pages/RegPage";
 import MainPage from "./pages/mainPage";
 import Page404 from "./pages/page404";
@@ -19,12 +20,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/land" element={<Landing />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reg" element={<RegPage />} />
-        <Route path="/*" element={<Page404 />} />
         <Route path="/changePassword" element={<ChangePass />} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>{" "}
     <ToastContainer
