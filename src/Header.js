@@ -19,7 +19,7 @@ export default function Header(props) {
 
   return (
     <header>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row align-items-center justify-content-between head">
           <div className="col-auto pl-3">Постаматус</div>
           <div className="col-auto pr-3">
