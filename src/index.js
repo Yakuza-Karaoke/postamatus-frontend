@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
+import ProfilePage from "./pages/ProfilePage";
 import Landing from "./pages/Landing";
 import RegPage from "./pages/RegPage";
 import MainPage from "./pages/mainPage";
@@ -20,6 +21,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/profile" element={<ProfilePage />} /> 
         <Route path="/" element={<Landing />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/admin" element={<AdminPage />} />

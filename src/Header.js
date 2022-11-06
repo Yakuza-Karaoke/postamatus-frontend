@@ -17,24 +17,24 @@ export default function Header(props) {
     navigate("/login");
   };
 
-  return (
-    <header>
-      <div className="container-fluid">
-        <div className="row align-items-center justify-content-between head">
-          <div className="col-auto pl-3">Постаматус</div>
-          <div className="col-auto pr-3">
-            {props.title ? props.title : null}
-          </div>
-          <div className="col-auto p-3">
-            {localStorage.getItem("token") && (
-              <div className="col-auto lead">
-                Добро пожаловать, {userData}!
-                <i onClick={Logout} className="bi bi-door-closed pointer"></i>
-              </div>
-            )}
-          </div>
+return (
+  <header>
+    <div>
+      <div className="row align-items-center justify-content-between head">
+        <div className="text-left col p-4">Постаматус</div>
+        <div className="col-auto pr-3">
+          {props.title ? props.title : null}
+        </div>
+        <div className="col-auto p-3">
+          {localStorage.getItem("token") && (
+            <div className="col-auto lead">
+              Добро пожаловать, {userData}!
+              <i onClick={Logout} className="bi bi-door-closed pointer"></i>
+            </div>
+          )}
         </div>
       </div>
-    </header>
-  );
+    </div>
+  </header>
+);
 }
