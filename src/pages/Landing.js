@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +18,15 @@ export default function Landing() {
   return (
     <div className="form-login d-flex flex-column justify-content-center">
       <div className="form d-flex flex-column justify-content-center">
+        <div
+          className="text-center"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <img
+            style={{ height: "150px", width: "150px" }}
+            src="/iconreverse.png"
+          />
+        </div>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-10 h3 text-center mb-4">
