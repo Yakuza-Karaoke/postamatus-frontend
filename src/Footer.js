@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div class="fixed-bottom">
+    <div className="fixed-bottom">
       <footer className="container p-3">
         <div className="text-center">
           <hr className="hr" />
