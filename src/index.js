@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
+import ProfilePage from "./pages/ProfilePage";
 import RegPage from "./pages/RegPage";
 import MainPage from "./pages/mainPage";
 import Page404 from "./pages/page404";
@@ -20,6 +21,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/profile" element={<ProfilePage />} /> 
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reg" element={<RegPage />} />
