@@ -1,7 +1,11 @@
-import { Map, Placemark, ObjectManager, ZoomControl } from "@pbe/react-yandex-maps";
+import {
+  Map,
+  Placemark,
+  ObjectManager,
+  ZoomControl,
+} from "@pbe/react-yandex-maps";
 import React from "react";
 import { doCalcScore } from "../common/points";
-
 
 class MyMap extends React.Component {
   state = {
@@ -27,8 +31,15 @@ class MyMap extends React.Component {
             ],
           },
           properties: {
-            balloonContent: "Адрес: " + obj.address + ". Население: " + obj.population,
+            balloonContent:
+              "Адрес: " + obj.address + ". Население: " + obj.population,
             hintContent: obj.address,
+          },
+          options: {
+            preset:
+              obj.type === "special"
+                ? "islands#redDotIcon"
+                : "islands#greenDotIcon",
           },
         };
         features.push(tmpObj);
@@ -64,11 +75,11 @@ class MyMap extends React.Component {
             preset: "islands#greenDotIcon",
           }}
           modules={[
-            'objectManager.addon.objectsBalloon',
-            'objectManager.addon.objectsHint',
+            "objectManager.addon.objectsBalloon",
+            "objectManager.addon.objectsHint",
           ]}
         />
-      <ZoomControl options={{ float: 'right' }} />
+        <ZoomControl options={{ float: "right" }} />
       </Map>
     );
   }
