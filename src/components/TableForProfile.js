@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function TableForProfile() {
+export default function TableForProfile(props) {
+  // props {points: [{}]}
   return (
     <div>
       <table className="table table-bordered border-secondary">

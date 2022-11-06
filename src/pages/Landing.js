@@ -5,7 +5,7 @@ export default function Landing() {
   const navigate = useNavigate();
 
   const navMain = () => {
-    return navigate("/");
+    return navigate("/main");
   };
   const navAdmin = () => {
     return navigate("/admin");
@@ -29,7 +29,7 @@ export default function Landing() {
             </div>
             <div className="col-10 mb-2 text-center">
               <a className="h4 pointer" onClick={navAdmin}>
-                Панель управления админа
+                Панель управления админа (В разработке)
               </a>
             </div>
             <div className="col-10 text-center">

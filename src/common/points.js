@@ -52,3 +52,21 @@ export const doSavePostamat = (lat, long, score) => {
 export const savePointCalc = (data) => {
   localStorage.setItem();
 };
+
+export const doGetUserPoints = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get("http://178.170.192.207:8000/points/my", {
+        headers: {
+          accept: "application/json",
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          resolve(res);
+        } else reject(res);
+      })
+      .catch((error) => reject(error));
+  });
+};
