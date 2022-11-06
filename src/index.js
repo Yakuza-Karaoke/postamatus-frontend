@@ -24,7 +24,7 @@ root.render(
         <Route path="/profile" element={<ProfilePage />} /> 
         <Route path="/" element={<Landing />} />
         <Route path="/main" element={<MainPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin" element={<Page404 />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reg" element={<RegPage />} />
         <Route path="/changePassword" element={<ChangePass />} />
