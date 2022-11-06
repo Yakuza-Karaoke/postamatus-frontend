@@ -1,16 +1,16 @@
 import "../index.css";
 import Logo404 from "../Logo404";
-import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 
 export default function Page404() {
   const navigate = useNavigate();
+
   function Return() {
     navigate("/");
   }
+
   return (
-    <div className="page-404">
-      <div className="text-404-top-header col-auto p-3">Постаматус</div>
+    <div className="page-background">
       <div>
         <div>
           <Logo404 />
@@ -28,13 +28,10 @@ export default function Page404() {
       </div>
       <div>
         <div>
-          <a class="button-back" href="/">
-            <div onClick={Return}>← Вернуться назад</div>
+          <a class="button-back" onClick={Return} href="/">
+            <div>← Вернуться назад</div>
           </a>
         </div>
-      </div>
-      <div className="text-white bg-white">
-        <Footer />
       </div>
     </div>
   );

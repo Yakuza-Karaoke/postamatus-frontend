@@ -29,7 +29,7 @@ return (
           {localStorage.getItem("token") && (
             <div className="col-auto lead">
               Добро пожаловать, {userData}!
-              <i onClick={Logout} class="bi bi-door-closed pointer"></i>
+              <i onClick={Logout} className="bi bi-door-closed pointer"></i>
             </div>
           )}
         </div>
