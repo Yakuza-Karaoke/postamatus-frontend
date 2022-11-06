@@ -1,13 +1,15 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import TableForProfile from "../components/TableForProfile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
   function Return() {
     navigate("/");
   }
+
+  if (localStorage.getItem("authenticated") === "true") { 
   return (
     <div>
       <Header title="Личный кабинет" />
@@ -74,4 +76,7 @@ export default function ProfilePage() {
       <Footer />
     </div>
   );
+  } else {
+    return <Navigate replace to="/login" />;
+  }
 }
