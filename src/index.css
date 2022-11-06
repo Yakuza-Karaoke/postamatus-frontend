@@ -165,8 +165,6 @@ a {
 
 .text-change-password
 {
-
- 
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -177,7 +175,6 @@ a {
 
 .text-change-password-statistic-header
 {
-  margin-left: 9%;
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -188,7 +185,6 @@ a {
 
 .text-change-password-statistic
 {
-  margin-left: 1.7%;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
