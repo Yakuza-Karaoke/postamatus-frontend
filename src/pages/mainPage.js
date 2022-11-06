@@ -15,16 +15,33 @@ export default function MainPage() {
       pointCalculations = data.point;
       document.getElementById("score").innerHTML =
         "Оценка локации: " + data.point.score.toFixed(2);
-      console.log(pointCalculations.coords[0], pointCalculations.coords[1], pointCalculations.score);
+      let near = "";
+      data.near_postamats &&
+        data.near_postamats.forEach(
+          (e) =>
+            (near += `<li>Постамат-${e.title}. Оценка: ${e.score.toFixed(
+              2
+            )}</li><br />`)
+        );
+      document.getElementById("postamats").innerHTML = near;
+      console.log(
+        pointCalculations.coords[0],
+        pointCalculations.coords[1],
+        pointCalculations.score
+      );
     };
 
     const onSavePostamat = () => {
       if (!pointCalculations) {
-        toast.warn('Вы не выбрали точку на карте!')
-        return
+        toast.warn("Вы не выбрали точку на карте!");
+        return;
       }
-      doSavePostamat(pointCalculations.coords[0], pointCalculations.coords[1], pointCalculations.score)
-    }
+      doSavePostamat(
+        pointCalculations.coords[0],
+        pointCalculations.coords[1],
+        pointCalculations.score
+      );
+    };
 
     return (
       <YMaps query={{ apikey: "6054728e-f3f0-4a09-b10c-8e6d17c49bf2" }}>
@@ -37,12 +54,16 @@ export default function MainPage() {
                 <u>г. Москва</u>
               </strong>
             </p>
-            
+
             <div className="container-fluid">
               <div className="row justify-content-around">
                 <div className="col-6">
                   <div className="col-11">
-                    <Button name="Добавить постамат" class="button" onClickHandler={onSavePostamat} />
+                    <Button
+                      name="Добавить постамат"
+                      class="button"
+                      onClickHandler={onSavePostamat}
+                    />
                   </div>
 
                   <div className="col-11">
@@ -52,8 +73,18 @@ export default function MainPage() {
                       </div>
                       <div
                         id="score"
-                        className="col-7 mr-3 py-2 h4 text-end"
-                      ></div>
+                        className="col-auto mr-3 py-2 h4 text-end"
+                      >
+                        Выберите точку на карте
+                      </div>
+                    </div>
+                    <div className="row align-items-center justify-content-between">
+                      <div className="ml-3 py-2 h5 text-center">
+                        Ближайшие постаматы к выбранной точке:
+                      </div>
+                      <div id="postamats" className="ml-3 py-2 h5 text-center">
+                        Постаматы не найдены
+                      </div>
                     </div>
                   </div>
                 </div>
